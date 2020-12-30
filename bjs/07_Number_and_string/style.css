@@ -2,8 +2,23 @@
     height: 100vh;
     font-family: 'Share Tech Mono', monospace;
 }
-
+#calc {
+	background: #363636;
+	border-radius: 10px;
+}
+#calc .row {
+	margin: 5px;
+}
+#history {
+	border: 1px solid #CED4DA;
+	border-radius: 10px;
+	padding: 5px;
+}
 .input-window {
     text-align: end;
     font-size: x-large;
+}
+h5 {
+	color: #9BA0A4;
+	font-size: 0.7em;
 }
