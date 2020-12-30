@@ -13,6 +13,8 @@
 	border: 1px solid #CED4DA;
 	border-radius: 10px;
 	padding: 5px;
+	color: white;
+	text-align: center;
 }
 .input-window {
     text-align: end;

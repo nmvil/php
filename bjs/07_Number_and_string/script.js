@@ -132,22 +132,22 @@ bdiv.addEventListener('click', () => {
 bequals.addEventListener('click', () => {
 	if (operation === '+') {
 		result = parseFloat(lastOperand) + parseFloat(inputWindow.value);
-		history.innerHTML += `${lastOperand} + ${inputWindow.value} = ${result} <br>`;
+		history.innerHTML += `${lastOperand} + ${inputWindow.value} = ${result} <br>\n`;
 		inputWindow.value = result;
 	}
 	if (operation === '-') {
 		result = parseFloat(lastOperand) - parseFloat(inputWindow.value);
-		history.innerHTML += `${lastOperand} - ${inputWindow.value} = ${result} <br>`;
+		history.innerHTML += `${lastOperand} - ${inputWindow.value} = ${result} <br>\n`;
 		inputWindow.value = result;
 	}
 	if (operation === '*') {
 		result = parseFloat(lastOperand) * parseFloat(inputWindow.value);
-		history.innerHTML += `${lastOperand} * ${inputWindow.value} = ${result} <br>`;
+		history.innerHTML += `${lastOperand} * ${inputWindow.value} = ${result} <br>\n`;
 		inputWindow.value = result;
 	}
 	if (operation === '/') {
 		result = parseFloat(lastOperand) / parseFloat(inputWindow.value);
-		history.innerHTML += `${lastOperand} / ${inputWindow.value} = ${result} <br>`;
+		history.innerHTML += `${lastOperand} / ${inputWindow.value} = ${result} <br>\n`;
 		inputWindow.value = result;
 	}
 })
