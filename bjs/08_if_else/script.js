@@ -202,7 +202,7 @@ function IntToString(num) {
 }
 
 // кнопка "заново"
-btnRetry.addEventListener('click', function () {
+// btnRetry.addEventListener('click', function () {
 	// minValue = (parseInt(prompt('Минимальное знание числа для игры','0')) || 0);
 	// minValue = (minValue >= 1000) ? 999 : (minValue <= -1000) ? -999 : minValue;
 	// maxValue = (parseInt(prompt('Максимальное знание числа для игры','100')) || 100);
@@ -214,21 +214,21 @@ btnRetry.addEventListener('click', function () {
 	// orderNumber = 1;
 	// orderNumberField.innerText = orderNumber;
 	// gameRun = true;
-})
+// })
 
 // кнопка "больше"
 btnOver.addEventListener('click', function () {
 	if (gameRun){
-		if (minValue === maxValue){
-			const phraseRandom = Math.round( Math.random());
+		if (minValue >= maxValue){
+			const phraseRandom = Math.round( Math.random()
+);
 			const answerPhrase = (phraseRandom === 1) ?
 				`Вы загадали неправильное число!\n😡` :
 				`Я сдаюсь..\n😤`;
-
 			answerField.innerText = answerPhrase;
 			gameRun = false;
 		} else {
-			minValue = answerNumber  + 1;
+			minValue = answerNumber + 1;
 			answerNumber  = Math.floor((minValue + maxValue) / 2);
 			let answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;
 			orderNumber++;
@@ -241,16 +241,15 @@ btnOver.addEventListener('click', function () {
 // кнопка "меньше"
 btnLess.addEventListener('click', function () {
 	if (gameRun){
-		if (minValue === maxValue){
+		if (minValue >= maxValue){
 			const phraseRandom = Math.round(Math.random());
 			const answerPhrase = (phraseRandom === 1) ?
 				`Вы загадали неправильное число!\n😡` :
 				`Я сдаюсь..\n😤`;
-
 			answerField.innerText = answerPhrase;
 			gameRun = false;
 		} else {
-			maxValue = answerNumber  - 1;
+			maxValue = answerNumber - 1;
 			answerNumber  = Math.floor((minValue + maxValue) / 2);
 			let answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;
 			orderNumber++;
