@@ -1,13 +1,25 @@
-let minValue = (parseInt(prompt('Минимальное знание числа для игры','0')) || 0);
-minValue = (minValue >= 1000) ? 999 : (minValue <= -1000) ? -999 : minValue;
-let maxValue = (parseInt(prompt('Максимальное знание числа для игры','100')) || 100);
-maxValue = (maxValue >= 1000) ? 999 : (maxValue <= -1000) ? -999 : maxValue;
-alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
-let answerNumber  = Math.floor((minValue + maxValue) / 2);
-let answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;
+// задаем всем кнопкам константы
+const btnRetry = document.querySelector('#btnRetry');
+const btnOver = document.querySelector('#btnOver');
+const btnLess = document.querySelector('#btnLess');
+const btnEqual = document.querySelector('#btnEqual');
+const btnStart = document.querySelector('#btnStart');
+
+// задаем поля 
+const minValueField = document.querySelector('#minValue')
+const maxValueField = document.querySelector('#maxValue')
+const orderNumberField = document.querySelector('#orderNumberField');
+const answerField = document.querySelector('#answerField');
+
+// стандартные значения переменных
+let minValue = 0;
+let maxValue = 100;
 let orderNumber = 1;
 let gameRun = true;
+let answerNumber  = Math.floor((minValue + maxValue) / 2);
+let answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;
 
+// возможные варианты ответов
 let question = ['Вы загадали число', 'Может это', 'Видимо это', 'Наверное'];
 let success = ['Я всегда угадываю\n😎', 'Это было легко!\n😎', 'Я думал будет что-то посложнее\n🤪']
 
@@ -35,16 +47,20 @@ let success = ['Я всегда угадываю\n😎', 'Это было лег
 // 		answerField.innerText = 'text0'
 // }
 
-const orderNumberField = document.querySelector('#orderNumberField');
-const answerField = document.querySelector('#answerField');
 
-orderNumberField.innerText = orderNumber;
-answerField.innerText = `Вы загадали число ${answerStr}?`;
-
-const btnRetry = document.querySelector('#btnRetry');
-const btnOver = document.querySelector('#btnOver');
-const btnLess = document.querySelector('#btnLess');
-const btnEqual = document.querySelector('#btnEqual');
+btnStart.addEventListener('click', () => {
+	minValue = (parseInt(minValueField.value) || 0);
+	maxValue = (parseInt(maxValueField.value) || 100);
+	minValue = (minValue >= 1000) ? 999 : (minValue <= -1000) ? -999 : minValue;
+	maxValue = (maxValue >= 1000) ? 999 : (maxValue <= -1000) ? -999 : maxValue;
+	minValue = (minValue >= 1000) ? 999 : (minValue <= -1000) ? -999 : minValue;
+	answerNumber  = Math.floor((minValue + maxValue) / 2);
+	answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;
+	orderNumber = 1;
+	gameRun = true;
+	orderNumberField.innerText = orderNumber;
+	answerField.innerHTML = `Загадайте число от ${minValue} до ${maxValue}<br>Вы загадали число ${answerStr}?`;
+})
 
 // преобразует число в текстовую запись
 function IntToString(num) {
@@ -187,17 +203,17 @@ function IntToString(num) {
 
 // кнопка "заново"
 btnRetry.addEventListener('click', function () {
-	minValue = (parseInt(prompt('Минимальное знание числа для игры','0')) || 0);
-	minValue = (minValue >= 1000) ? 999 : (minValue <= -1000) ? -999 : minValue;
-	maxValue = (parseInt(prompt('Максимальное знание числа для игры','100')) || 100);
-	maxValue = (maxValue >= 1000) ? 999 : (maxValue <= -1000) ? -999 : maxValue;
-	alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
-	answerNumber  = Math.floor((minValue + maxValue) / 2);
-	let answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;	
-	answerField.innerText = `Вы загадали число ${answerStr}?`;
-	orderNumber = 1;
-	orderNumberField.innerText = orderNumber;
-	gameRun = true;
+	// minValue = (parseInt(prompt('Минимальное знание числа для игры','0')) || 0);
+	// minValue = (minValue >= 1000) ? 999 : (minValue <= -1000) ? -999 : minValue;
+	// maxValue = (parseInt(prompt('Максимальное знание числа для игры','100')) || 100);
+	// maxValue = (maxValue >= 1000) ? 999 : (maxValue <= -1000) ? -999 : maxValue;
+	// alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+	// answerNumber  = Math.floor((minValue + maxValue) / 2);
+	// let answerStr = (IntToString(answerNumber).length < 20) ? IntToString(answerNumber) : answerNumber;	
+	// answerField.innerText = `Вы загадали число ${answerStr}?`;
+	// orderNumber = 1;
+	// orderNumberField.innerText = orderNumber;
+	// gameRun = true;
 })
 
 // кнопка "больше"
@@ -244,7 +260,7 @@ btnLess.addEventListener('click', function () {
 	}
 })
 
-
+// кнопка "верно"
 btnEqual.addEventListener('click', function () {
 	if (gameRun){
 		answerField.innerText = success[Math.round(Math.random() * 2)]
