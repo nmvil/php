@@ -67,6 +67,7 @@ const personGenerator = {
 		}
 	}`,
 
+// профессии задаем двух типов, только мужские, и все остальные
 	professionJson: `{
 		"unisex": {
 			"count": 10,
@@ -95,6 +96,7 @@ const personGenerator = {
 		}
 	}`,
 
+// задаем месяцы по номерам, и количество дней в месяце
 	month: `{
 		"1": {
 			"name": "январь",
@@ -157,6 +159,7 @@ const personGenerator = {
 		return obj.list[prop];
 	},
 
+// выбираем имя в зависимости от пола
 	randomFirstName: function(isMale) {
 		if (isMale) {
 			return this.randomValue(this.firstNameMaleJson);
@@ -166,19 +169,21 @@ const personGenerator = {
 
 	},
 
-
+// выбираем фамилию
 	randomSurname: function() {
 
 		return this.randomValue(this.surnameJson);
 
 	},
 
+// выбираем отчество
 	randomPatronymic: function() {
 
 		return this.randomValue(this.patronymicJson);
 
 	},
 
+// выбираем профессию
 	randomProfession: function(isMale) {
 		const obj = JSON.parse(this.professionJson);
 		if (isMale) {
@@ -198,6 +203,7 @@ const personGenerator = {
 
 	},
 
+// выводит дату рождения
 	randonBirthday: function () {
 		let year = this.randomIntNumber(2021, 1921);
 		const obj = JSON.parse(this.month);
@@ -211,10 +217,11 @@ const personGenerator = {
 	getPerson: function () {
 		this.person = {};
 		this.person.birthday = this.randonBirthday();
-		let randomGender = this.randomIntNumber();
-		this.person.firstName = this.randomFirstName(randomGender);
-		this.person.profession = this.randomProfession(randomGender);
-		if (randomGender) {
+		// выбираем пол (1 - мужчина, 0 - женщина)
+		let gender = this.randomIntNumber();
+		this.person.firstName = this.randomFirstName(gender);
+		this.person.profession = this.randomProfession(gender);
+		if (gender) {
 			this.person.gender = this.GENDER_MALE;
 			this.person.surname = this.randomSurname();
 			this.person.patronymic = (this.randomPatronymic() + 'ич');
